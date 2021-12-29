@@ -1,0 +1,24 @@
+
+<h1>Dashboard</h1>
+<style>
+.log{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center
+}
+</style>
+<%= form_with(scope: :session, url: logout_path) do |f| %>
+
+
+ <div class="log">
+
+<%= f.submit "Log out", class: "  btn-primary" %>
+ </div>
+ <% end %>
