@@ -1,0 +1,24 @@
+<h1>Project details</h1>
+
+<p><b>Title:  </b><%= @project.title%> </p>
+
+<p><b>Description:   </b><%= @project.description%> </p>
+
+<p><b>Project ID :   </b><%= @project.id%> </p>
+
+<p>
+<br><%= link_to "Edit", edit_project_path, :class =>"btn btn-outline-primary" %>
+<%= button_to "Delete", project_path(@project),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+                  </p>
+<br>
+<h2>Related Bugs</h2>
+<% @bug.each do |bug| %>
+    <li>
+        <%= bug.descriptive_title %>
+
+      </a>
+    </li>
+  <% end %>
+<br><%= link_to "create bug", new_bug_path, :class =>"btn btn-outline-primary" %><br

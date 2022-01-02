@@ -1,0 +1,13 @@
+
+<%= form_for @project do |f|%>
+  <%=f.label :title , :class => 'col-md-12'%>
+  <%=f.text_field :title , :class => 'col-md-12' ,:required => 'true' %>
+  <hr/>
+  <%=f.label :description , :class => 'col-md-12' %>
+  <%=f.text_area :description , :class => 'col-md-12' %>
+  <hr/>
+   <%=f.label :projectid , :class => 'col-md-12' %>
+  <%=f.text_area :projectid , :class => 'col-md-12' %>
+  <hr/>
+  <%= f.submit  :class => 'btn btn-primary'%>
+<%end%>

@@ -1,0 +1,23 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %><br>
+  </div>
+  <div>
+    <%= form.label :projectid %><br>
+    <%= form.text_field :projectid, value: project.id%>
+  </div>
+  <div>
+    <%= form.label :user_id %><br>
+    <%= form.number_field :user_id, value: current_user.id  %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

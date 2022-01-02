@@ -1,0 +1,43 @@
+<%= form_for @bug do |f|%>
+  <div class="form-group row">
+    <%=f.label :descriptive_title,'Title: ', :class=>"col-form-label" %>
+    <%=f.text_field :descriptive_title , :class => 'col-md-11 form-control', :required => true %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :deadline, 'Deadline:', :class=>"col-form-label col-md-1" %>
+    <%= f.text_field :deadline, :autocomplete => 'off', :class => 'form-control' %>
+  </div>
+
+  <div class="form-group row">
+    <%= label :bug_type, 'Type: ', :class=>" col-form-label" %>
+    <div class="form-control col-md-5">  
+      <%= f.radio_button :bug_type, 'bug', :required => true %>
+      <%= label :bug_type, 'Bug' %>
+      <%= f.radio_button :bug_type, 'feature' %>
+      <%= label :bug_type, 'feature' %>
+    </div>
+      <% status = ['new', 'started', 'resolved'] %>
+      <%= f.label :status, 'Status:', :class=>"col-form-label"  %>
+      <%= f.select(:status, status,{}, {:class => "form-control",:required=>true}) %>
+  </div>
+  <div>
+    <%= f.label :projectxid %><br>
+    <%= f.number_field :project_id  %>
+  </div>
+  <div>
+    <%= f.label :creator_id %><br>
+    <%= f.number_field :creator_id, value: current_user.id  %>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :screenshot,'Screen shot:', :class=>"col-form-label" %>
+    <%=f.file_field :screenshot, :class => "form-control",:accept => "image/x-png,image/gif" %>
+  </div>
+
+
+
+    <%= f.submit  :class => 'float-right btn btn-outline-primary' %>
+
+<%end%>
+
