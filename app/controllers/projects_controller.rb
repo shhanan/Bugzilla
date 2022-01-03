@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @projects= Project.all
+    byebug
+    # @projects= Project.all
+    @projects = Project.accessible_by(current_ability)
   end
   def show
     @project = Project.find(params[:id])

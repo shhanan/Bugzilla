@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_105700) do
+ActiveRecord::Schema.define(version: 2022_01_03_105706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_105700) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "project_id"
     t.bigint "creator_id"
+    t.bigint "assign_to"
     t.string "screenshot"
     t.index ["project_id"], name: "index_bugs_on_project_id"
   end
@@ -48,10 +49,10 @@ ActiveRecord::Schema.define(version: 2022_01_02_105700) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "user_type"
+    t.integer "user_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
