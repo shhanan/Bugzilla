@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root "sessions#new"
+  root "users#index"
+
   resources :projects do
     member do
       patch 'add_user'
@@ -27,7 +28,7 @@ resources :users
   #get '/logout', to: 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy '
   get '/dashboard', to: "users#index"
-  get '/adduser' , to: "projects#add_user"
+  #get '/adduser' , to: "projects#add_user"
   #get '/projects' , to: "projects#index"
   #get '/projects/new', to: "projects#new"
   #post '/projects', to: "projects#create"

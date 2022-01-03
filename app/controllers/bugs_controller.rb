@@ -1,4 +1,5 @@
 class BugsController < ApplicationController
+  load_and_authorize_resource :nested => :project
   def index
   @bugs=Bug.all
   end
@@ -6,13 +7,15 @@ class BugsController < ApplicationController
   def new
     @bug = Bug.new
      @bug.project_id = params[:project_id]
+
   end
 
   def create
      #@bug = @project.new(bug_params)
      #@project = Project.id
     #@bug = @project.bugs.create(bug_params)
-    @bug = current_user.bugs.new(bug_params)
+    #@bug = current_user.bugs.new(bug_params)
+    @bug = Bug.new(bug_params)
     if @bug.save
       redirect_to projects_path
     else
@@ -23,7 +26,16 @@ class BugsController < ApplicationController
   def edit
   end
 
+  def update
+    if @bug.update(bug_params)
+      redirect_to @bug
+    else
+      render 'edit'
+    end
+  end
   def show
+    @project = Project.find(params[:id])
+    @bug.project_id = Bug.find(@project.id)
   end
 
   def assign

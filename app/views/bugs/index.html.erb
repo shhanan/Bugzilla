@@ -1,2 +1,11 @@
 <h1>Bugs</h1>
-<%=current_project.id%>
+<ul>
+  <% @bugs.each do |bugs| %>
+    <li>
+      <a href="/bugs/<%= bugs.project_id %>">
+        <%= bugs.descriptive_title %>
+
+      </a>
+    </li>
+  <% end %>
+</ul>

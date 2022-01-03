@@ -1,14 +1,11 @@
 class UsersController < ApplicationController
-      before_action :require_user, only: [:index, :show]
+   before_action :require_user, only: [:index, :show]
 
     def index
-
     end
-  
     def new
       @user = User.new
     end
- 
     def create
       @user = User.new(user_params)
       if @user.save
@@ -18,10 +15,8 @@ class UsersController < ApplicationController
       render 'new'
       end
     end
-
-
       private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :user_type)
+      params.require(:user).permit(:username, :email, :password, :user_type)
     end
 end

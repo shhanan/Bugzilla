@@ -1,5 +1,5 @@
 <h1>Projects</h1>
-
+<% if can? :read, @project %>
 <ul>
   <% @projects.each do |project| %>
     <li>
@@ -9,8 +9,6 @@
     </li>
   <% end %>
 </ul>
-
-
-
+<%end>
 
 <%= link_to "Create New Project", 'projects/new' %>
