@@ -14,11 +14,16 @@
                   </p>
 <br>
 <h2>Related Bugs</h2>
-<% @bug.each do |bug| %>
-    <li>
-        <%= bug.descriptive_title %>
 
-      </a>
-    </li>
-  <% end %>
+<% if @bugs.present?%>
+<% @bugs.each do |bug|%>
+    <%= bug.descriptive_title %>
+    <%= bug.id %>
+    <br>
+    <%end%>
+<%else%>
+    <p>NO Bugs</p>
+<%end%>
+
+
 <br><%= link_to "create bug", new_bug_path, :class =>"btn btn-outline-primary" %><br

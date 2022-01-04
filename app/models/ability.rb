@@ -9,6 +9,16 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
       if user.manager?
         can :manage, Project
+        can :manage, Bug
+      else
+        can :read, :all
+      end
+      if user.developer?
+        can :read, :all
+      end
+      if user.qa?
+        can :read, Project
+        can :manage, Bug
       else
         can :read, :all
       end

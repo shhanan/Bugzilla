@@ -1,6 +1,5 @@
 class BugsController < ApplicationController
   load_and_authorize_resource
-
   def index
   @bugs=Bug.all
   end
@@ -13,8 +12,7 @@ class BugsController < ApplicationController
   def create
      #@bug = @project.new(bug_params)
      #@project = Project.id
-    #@bug = @project.bugs.create(bug_params)
-    @bug = current_user.bugs.new(bug_params)
+     @bug = Bug.new(bug_params)
     if @bug.save
       redirect_to projects_path
     else
@@ -26,6 +24,8 @@ class BugsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+
   end
 
   def assign
@@ -35,7 +35,7 @@ class BugsController < ApplicationController
       redirect_to @bug , notice: "Not Assigned"
     end
   end
-def bug_params
-    params.require(:bug).permit(:descriptive_title,:deadline,:bug_type,:status, :project_id, :creator_id, :screenshot, )
+  def bug_params
+    params.require(:bug).permit(:descriptive_title,:deadline,:bug_type, :status, :project_id, :creator_id, :screenshot, )
   end
 end

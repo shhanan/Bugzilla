@@ -2,14 +2,13 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    byebug
     # @projects= Project.all
     @projects = Project.accessible_by(current_ability)
   end
   def show
-    @project = Project.find(params[:id])
-    @user=User.all
-    @bug=Bug.all
+    @project_id = Project.find(params[:id])
+    @bugs=Bug.where(project_id: @project_id)
+
 
   end
   def new
