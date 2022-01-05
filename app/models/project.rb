@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
-  belongs_to :user
+  has_many :users
   has_many :bugs
+  has_many :project_users
 end

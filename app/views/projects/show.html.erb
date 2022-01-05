@@ -1,3 +1,4 @@
+<h1><%= link_to "BUG TRACKING SYSTEM", '/dashboard' %></h1>
 <h1>Project details</h1>
 
 <p><b>Title:  </b><%= @project.title%> </p>
@@ -5,16 +6,28 @@
 <p><b>Description:   </b><%= @project.description%> </p>
 
 <p><b>Project ID :   </b><%= @project.id%> </p>
-
-<p>
-<br><%= link_to "Edit", edit_project_path, :class =>"btn btn-outline-primary" %>
+<%= link_to "Edit", edit_project_path, :class =>"btn btn-outline-primary" %>
+<div>
+<br>
 <%= button_to "Delete", project_path(@project),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
-                  </p>
+</div>
+<br>
+<div>
+
+<% if @project_user.present?%>
+<%@project_user.each do |p|%>
+    <%= p.user_id %><br>
+    <%end%>
+<%else%>
+    <p>No users</p>
+<%end%>
+
+</div>
+<%= link_to "Assign User", new_project_user_path, :class =>"btn btn-outline-primary" %>
 <br>
 <h2>Related Bugs</h2>
-
 <% if @bugs.present?%>
 <% @bugs.each do |bug|%>
     <%= bug.descriptive_title %>

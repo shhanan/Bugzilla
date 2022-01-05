@@ -6,10 +6,11 @@ class ProjectsController < ApplicationController
     @projects = Project.accessible_by(current_ability)
   end
   def show
+
     @project_id = Project.find(params[:id])
     @bugs=Bug.where(project_id: @project_id)
-
-
+    @project_user=ProjectUser.where(project_id: @project_id)
+     @user=User.all
   end
   def new
     @project = Project.new
@@ -40,20 +41,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
- @project = Project.find(params[:id])
+    @project = Project.find(params[:id])
     @project.destroy
     redirect_to '/projects'
-
-  end
-  def add_user
-    if @project.users << @user
-      redirect_to @project
-    else
-      redirect_to @project, notice: "Can not add user to project"
-    end
   end
   private
   def project_params
-    params.require(:project).permit(:title, :description, :projectid, :user_id)
+    params.require(:project).permit(:title, :description, :projectid, :user_id, :user_assigned)
   end
+
 end

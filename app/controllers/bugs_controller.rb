@@ -10,8 +10,6 @@ class BugsController < ApplicationController
   end
 
   def create
-     #@bug = @project.new(bug_params)
-     #@project = Project.id
      @bug = Bug.new(bug_params)
     if @bug.save
       redirect_to projects_path

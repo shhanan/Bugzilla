@@ -1,6 +1,7 @@
+<h1><%= link_to "BUG TRACKING SYSTEM", '/dashboard' %></h1>
 <h1>Projects</h1>
 
-<ul>
+<ul style="font-size: 20px;, color: black;">
   <% @projects.each do |project| %>
     <li>
       <a href="/projects/<%= project.id %>">
@@ -10,7 +11,4 @@
   <% end %>
 </ul>
 
-
-
-
-<%= link_to "Create New Project", 'projects/new' %>
+<h2><%= link_to "Create New Project", 'projects/new' %></h2>

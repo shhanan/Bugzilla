@@ -1,3 +1,4 @@
+<h2><%=current_user.username%>  &nbsp; Email:  <%=current_user.email%>      &nbsp;   User Role  :<%=current_user.user_type%></h>
 <h1>Bug Tracking System</h1>
 <style>
   .log{
@@ -17,6 +18,7 @@
   <%= f.submit "Log out", class: "  btn-primary" %>
 </div>
 <% end %>
-<%= link_to "Project", 'projects#index' %><br><br>
-<%= link_to "Bugs", bugs_path %>
+<br><br>
+<h2><%= link_to "Project", 'projects#index' %> <br><br></h2>
+<h2><%= link_to "Bugs", new_bug_path %></h2>
 

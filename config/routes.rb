@@ -3,21 +3,17 @@ Rails.application.routes.draw do
   root "sessions#new"
   resources :projects do
     member do
-      patch 'add_user'
-      patch 'remove_user'
+      patch 'assign_user'
     end
   end
 
   resources :bugs do
     member do
-      patch 'assign'
-      patch 'start_working'
-      patch 'work_done'
     end
   end
 
 resources :users
-
+resources :project_users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #Session routes
   get "signup", to: "users#new"
@@ -27,7 +23,7 @@ resources :users
   #get '/logout', to: 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy '
   get '/dashboard', to: "users#index"
-  get '/adduser' , to: "projects#add_user"
+  #get '/adduser' , to: "projects#add_user"
   #get '/projects' , to: "projects#index"
   #get '/projects/new', to: "projects#new"
   #post '/projects', to: "projects#create"
