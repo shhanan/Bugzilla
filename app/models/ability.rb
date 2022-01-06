@@ -10,11 +10,11 @@ class Ability
       if user.manager?
         can :manage, Project
         can :manage, Bug
-      else
-        can :read, :all
+        can :manage, ProjectUser
       end
       if user.developer?
-        can :read, :all
+        can :read, Project
+        can :read, ProjectUser
       end
       if user.qa?
         can :read, Project

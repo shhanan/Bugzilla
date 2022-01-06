@@ -1,4 +1,5 @@
 class ProjectUsersController < ApplicationController
+  load_and_authorize_resource
   def new
     @project_user=ProjectUser.new
   end

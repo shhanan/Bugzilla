@@ -6,7 +6,8 @@ class BugsController < ApplicationController
 
   def new
     @bug = Bug.new
-     @bug.project_id = params[:project_id]
+     @project_id = params[:project_id]
+
   end
 
   def create
