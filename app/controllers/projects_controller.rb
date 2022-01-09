@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
 
   def index
     if current_user.user_type == 'developer'
-      byebug
       @pro=ProjectUser.where(user_id:current_user.id).pluck(:project_id)
       @projects=Project.where(id: @pro)
     else
@@ -13,7 +12,8 @@ class ProjectsController < ApplicationController
   def show
     @project_id = Project.find(params[:id])
     @bugs=Bug.where(project_id: @project_id)
-    @project_user=ProjectUser.where(project_id: @project_id)
+    @p_user=ProjectUser.where(project_id: @project_id).pluck(:user_id)
+    @project_username=User.where(id:@p_user)
      @user=User.all
   end
   def new

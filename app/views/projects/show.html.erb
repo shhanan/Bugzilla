@@ -1,36 +1,37 @@
 
 <h1><%= link_to "BUG TRACKING SYSTEM", '/dashboard' %></h1>
 <h1>Project details</h1>
-
 <p><b>Title:  </b><%= @project.title%> </p>
-
 <p><b>Description:   </b><%= @project.description%> </p>
-
 <p><b>Project ID :   </b><%= @project.id%> </p>
+<%if current_user.id == @project.user_id%>
 <%= link_to "Edit", edit_project_path, :class =>"btn btn-outline-primary" %>
+
 <div>
 <br>
 <%= button_to "Delete", project_path(@project),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
+<%end%>
 </div>
-<br>
-<div>
-
-<% if @project_user.present?%>
-<%@project_user.each do |p|%>
-    <%= p.user_id %><br>
+<h2>User assigned</h2>
+<% if @project_username.present?%>
+<%@project_username.each do |p|%>
+   <b>username:    </b><%= p.username %>
+   <b>Role:</b>    <%= p.user_type %><br>
     <%end%>
 <%else%>
     <p>No users</p>
 <%end%>
-
+<div>
+<%if current_user.id == @project.user_id%>
+<h4><%= link_to "Assign User", new_project_user_path(:project_id => @project.id), :class =>"btn btn-outline-primary" %></h4>
+<%end%>
 </div>
-<%= link_to "Assign User", new_project_user_path, :class =>"btn btn-outline-primary" %>
-<br>
 <h2>Related Bugs</h2>
 <% if @bugs.present?%>
 <% @bugs.each do |bug|%>
+    <a href="/bugs/<%= bug.id %>">
     <%= bug.descriptive_title %>
     <%= bug.id %>
     <br>
@@ -38,6 +39,4 @@
 <%else%>
     <p>NO Bugs</p>
 <%end%>
-
-<%byebug%>
-<br><%= link_to "create bug", new_bug_path(:project_id => @project.id) , :class =>"btn btn-outline-primary" %><br
+<h4><%= link_to "Report Bug", new_bug_path(:project_id => @project.id) , :class =>"btn btn-outline-primary" %></h4>

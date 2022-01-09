@@ -2,11 +2,11 @@ class ProjectUsersController < ApplicationController
   load_and_authorize_resource
   def new
     @project_user=ProjectUser.new
+    @project_id = params[:project_id]
   end
   def create
-    #@project_id=Project.find(params[:id])
+
     @project_user=ProjectUser.new(project_user_params)
-    byebug
     if @project_user.save
       redirect_to projects_path
     end

@@ -2,6 +2,6 @@
  <%= form_with(model: @project_user, local: true) do |form| %>
 
  <%=form.collection_select:user_id, User.all, :id,:username%>
-  <%=form.collection_select:project_id, Project.all, :id,:title%>
+ <%= form.hidden_field :project_id, value: @project_id  %>
  <%=form.submit%>
  <%end%>

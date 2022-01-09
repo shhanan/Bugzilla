@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_104932) do
+ActiveRecord::Schema.define(version: 2022_01_08_074750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2022_01_05_104932) do
     t.bigint "project_id"
     t.bigint "creator_id"
     t.string "screenshot"
+    t.text "description"
+    t.bigint "assign_to"
     t.index ["project_id"], name: "index_bugs_on_project_id"
   end
 

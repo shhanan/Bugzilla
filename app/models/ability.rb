@@ -15,6 +15,8 @@ class Ability
       if user.developer?
         can :read, Project
         can :read, ProjectUser
+        can :assign, Bug
+        can :change_status, Bug
       end
       if user.qa?
         can :read, Project

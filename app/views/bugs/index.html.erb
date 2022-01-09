@@ -1,2 +1,9 @@
-<h1>Bugs</h1>
-<%#= current_project.id %>
+<h1>My assigned bugs</h1>
+<% @bugs.each do |bug| %>
+<li>
+        <a href="/bugs/<%= bug.id %>">
+        <%= bug.descriptive_title %>
+      </a>
+    </li>
+  <% end %>
+</ul>

@@ -4,6 +4,11 @@
     <%=f.text_field :descriptive_title , :class => 'col-md-11 form-control', :required => true %><br>
   </div>
 <br>
+<div>
+<%=f.label :Description , :class => 'col-md-12' %>
+  <%=f.text_area :description , :class => 'col-md-12' %>
+  </div>
+  <br>
   <div class="form-group row">
     <%= f.label :deadline, 'Deadline   :', :class=>"col-form-label col-md-1" %>
     <%= f.text_field :deadline, :autocomplete => 'off', :class => 'form-control' %>
@@ -11,13 +16,10 @@
 <br>
   <div class="form-group row">
     <%= label :bug_type, 'Type: ', :class=>" col-form-label" %>
-    <div class="form-control col-md-5">  
-      <%= f.radio_button :bug_type, 'bug', :required => true %>
-      <%= label :bug_type, 'Bug' %>
-      <%= f.radio_button :bug_type, 'feature' %>
-      <%= label :bug_type, 'feature' %>
+      <%=f.select(:bug_type ,options_for_select([[' '],['bug'],['feature']]),{id:"bug_type"})%>
     </div>
     <br>
+    <div>
       <% status = ['new', 'started', 'resolved','completed'] %>
       <%= f.label :status, 'Status:', :class=>"col-form-label"  %>
       <%= f.select(:status, status,{}, {:class => "form-control",:required=>true}) %>
@@ -36,9 +38,8 @@
     <%=f.label :screenshot,'Screen shot:', :class=>"col-form-label" %>
     <%=f.file_field :screenshot, :class => "form-control",:accept => "image/x-png,image/gif" %>
   </div>
-
+<%= f.hidden_field :assign_to, value: nil%>
 <br>
-
     <%= f.submit  :class => 'float-right btn btn-outline-primary' %>
 
 <%end%>

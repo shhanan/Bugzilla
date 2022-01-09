@@ -1,13 +1,12 @@
 class BugsController < ApplicationController
   load_and_authorize_resource
   def index
-  @bugs=Bug.all
+  @bugs=Bug.where(assign_to:current_user.id)
   end
 
   def new
     @bug = Bug.new
      @project_id = params[:project_id]
-
   end
 
   def create
@@ -23,18 +22,32 @@ class BugsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @bug = Bug.find(params[:id])
 
   end
-
+  def destroy
+     @bug = Bug.find(params[:id])
+     @bug.destroy
+     redirect_to projects_path
+  end
   def assign
+      @bug = Bug.find(params[:id])
     if @bug.update_attribute(:assign_to,current_user.id)
-      redirect_to @bug , notice: "Assigned Successfully"
+      redirect_to '/dashboard'
     else
       redirect_to @bug , notice: "Not Assigned"
     end
   end
+  def change_status
+  @bug = Bug.find(params[:id])
+    if @bug.update_attribute(:status,"resolved")
+      redirect_to '/dashboard'
+    else
+      redirect_to @bug , notice: "Not Assigned"
+    end
+
+  end
   def bug_params
-    params.require(:bug).permit(:descriptive_title,:deadline,:bug_type, :status, :project_id, :creator_id, :screenshot, )
+    params.require(:bug).permit(:descriptive_title,:description,:deadline,:bug_type, :status, :project_id, :creator_id, :screenshot,:assign_to)
   end
 end

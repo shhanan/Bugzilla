@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   resources :bugs do
     member do
+      patch 'assign'
+      put 'assign'
+      patch 'change_status'
+      put 'change_status'
+
     end
   end
 
@@ -23,6 +28,7 @@ resources :project_users
   #get '/logout', to: 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy '
   get '/dashboard', to: "users#index"
+  get '/bugs/:id', to: 'bugs#show'
   #get '/adduser' , to: "projects#add_user"
   #get '/projects' , to: "projects#index"
   #get '/projects/new', to: "projects#new"
