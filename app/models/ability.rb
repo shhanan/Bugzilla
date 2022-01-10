@@ -9,7 +9,6 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
       if user.manager?
         can :manage, Project
-        can :manage, Bug
         can :manage, ProjectUser
       end
       if user.developer?

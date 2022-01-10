@@ -3,6 +3,8 @@ Bug Title : <%=@bug.descriptive_title%><br>
 Bug Description   : <%=@bug.description%><br>
 Bug Type   : <%=@bug.bug_type%><br>
 Bug Status   : <%=@bug.status%><br>
+Bug screenshot   : <%=@bug.screenshot%><br>
+
  <%= button_to "Delete", bug_path( @bug), :method => :delete %>
  <%= button_to "assign", assign_bug_path(:id=> @bug.id), :method => :put %> <br>
   <%= button_to "Change status", change_status_bug_path(:id=> @bug.id), :method => :put %>

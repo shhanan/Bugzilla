@@ -26,7 +26,10 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
+gem 'javascript', '~> 0.0.2'
 gem 'byebug', '~> 8.2', '>= 8.2.2'
 
 # Use Redis adapter to run Action Cable in production
@@ -47,7 +50,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 # gem 'devise'
 gem "pundit"
-#gem "rmagick"
+gem "rmagick"
 gem "carrierwave"
 gem 'cancancan'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

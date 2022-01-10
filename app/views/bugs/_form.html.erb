@@ -1,3 +1,4 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <%= form_for @bug do |f|%>
   <div class="form-group row">
     <%=f.label :descriptive_title,'Title     :', :class=>"col-form-label" %>
@@ -15,16 +16,21 @@
   </div>
 <br>
   <div class="form-group row">
-    <%= label :bug_type, 'Type: ', :class=>" col-form-label" %>
-      <%=f.select(:bug_type ,options_for_select([[' '],['bug'],['feature']]),{id:"bug_type"})%>
+    <%= label :bug_type, 'Type: ', :class=>" col-form-label col-md-1" %>
+    <div class="form-control col-md-5",onchange(function)>
+      <%= f.radio_button :bug_type, 'bug', :required => true %>
+      <%= label :bug_type, 'Bug' %>
+      <%= f.radio_button :bug_type, 'feature' %>
+      <%= label :bug_type, 'feature' %>
     </div>
-    <br>
-    <div>
-      <% status = ['new', 'started', 'resolved','completed'] %>
-      <%= f.label :status, 'Status:', :class=>"col-form-label"  %>
-      <%= f.select(:status, status,{}, {:class => "form-control",:required=>true}) %>
+      <% bug_status = ['new','started','started'] %>
+      <%= f.label :status, 'Status:', :class=>"col-form-label col-md-1"  %>
+      <%= f.select(:status, bug_status,{}, {:class => "form-control col-md-5",:required=>true}) %>
   </div>
+
   <br>
+
+
   <div>
   <%= f.hidden_field :project_id, value: @project_id  %>
   </div>
@@ -44,3 +50,16 @@
 
 <%end%>
 
+<script type="text/javascript">
+  $("input[name='bug[bug_type]']").change(function() {
+    var obj = $("select[name='bug[status]']")[0][3]
+    if(this.value==='bug'){
+      obj.value = "resolved"
+      obj.text  = "resolved"
+    }
+    else{
+      obj.value = "completed"
+      obj.text = "completed"
+    }
+  })
+  </script>
