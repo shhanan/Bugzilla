@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       patch 'assign_user'
+       get 'removeuser'
+      patch 'removeuser'
     end
   end
 

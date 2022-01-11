@@ -13,8 +13,10 @@ class ProjectsController < ApplicationController
     @project_id = Project.find(params[:id])
     @bugs=Bug.where(project_id: @project_id)
     @p_user=ProjectUser.where(project_id: @project_id).pluck(:user_id)
+
     @project_username=User.where(id:@p_user)
      @user=User.all
+     @project_user=ProjectUser.where(user_id:@p_user)
   end
   def new
     @project = Project.new
@@ -49,6 +51,14 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to '/projects'
+  end
+  def removeuser
+    @project_id = params[:project_id]
+    @user_id = params[:user_id]
+    @project_user=ProjectUser.where(project_id:@project_id,user_id:@user_id).pluck(:id)
+    if ProjectUser.destroy(@project_user)
+      redirect_to '/projects'
+    end
   end
   private
   def project_params

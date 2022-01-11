@@ -1,18 +1,18 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <%= form_for @bug do |f|%>
   <div class="form-group row">
-    <%=f.label :descriptive_title,'Title     :', :class=>"col-form-label" %>
-    <%=f.text_field :descriptive_title , :class => 'col-md-11 form-control', :required => true %><br>
+    <%=f.label :descriptive_title,'Title     :' %>
+    <%=f.text_field :descriptive_title , :required => true %><br>
   </div>
 <br>
 <div>
-<%=f.label :Description , :class => 'col-md-12' %>
-  <%=f.text_area :description , :class => 'col-md-12' %>
+<%=f.label :Description%>
+  <%=f.text_area :description%>
   </div>
   <br>
   <div class="form-group row">
-    <%= f.label :deadline, 'Deadline   :', :class=>"col-form-label col-md-1" %>
-    <%= f.text_field :deadline, :autocomplete => 'off', :class => 'form-control' %>
+    <%= f.label :deadline, 'Deadline   :' %>
+    <%= f.date_field :deadline, :autocomplete => 'off', :class => 'form-control' %>
   </div>
 <br>
   <div class="form-group row">
@@ -23,18 +23,13 @@
       <%= f.radio_button :bug_type, 'feature' %>
       <%= label :bug_type, 'feature' %>
     </div>
-      <% bug_status = ['new','started','started'] %>
+      <% bug_status = ['new','started','resolved'] %>
       <%= f.label :status, 'Status:', :class=>"col-form-label col-md-1"  %>
       <%= f.select(:status, bug_status,{}, {:class => "form-control col-md-5",:required=>true}) %>
   </div>
-
-  <br>
-
-
   <div>
   <%= f.hidden_field :project_id, value: @project_id  %>
   </div>
-  <br>
   <div>
 
     <%= f.hidden_field :creator_id, value: current_user.id  %>

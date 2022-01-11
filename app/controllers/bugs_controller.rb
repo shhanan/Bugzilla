@@ -33,6 +33,7 @@ class BugsController < ApplicationController
   def assign
       @bug = Bug.find(params[:id])
     if @bug.update_attribute(:assign_to,current_user.id)
+        @bug.update_attribute(:status,"started")
       redirect_to '/dashboard'
     else
       redirect_to @bug , notice: "Not Assigned"

@@ -10,5 +10,6 @@
     </li>
   <% end %>
 </ul>
-
+<%if current_user.user_type == 'manager'%>
 <h2><%= link_to "Create New Project", 'projects/new' %></h2>
+<%end%>

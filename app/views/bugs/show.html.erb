@@ -1,11 +1,16 @@
-Bug ID   : <%=@bug.id%><br>
-Bug Title : <%=@bug.descriptive_title%><br>
-Bug Description   : <%=@bug.description%><br>
-Bug Type   : <%=@bug.bug_type%><br>
-Bug Status   : <%=@bug.status%><br>
-Bug screenshot   : <%=@bug.screenshot%><br>
-
- <%= button_to "Delete", bug_path( @bug), :method => :delete %>
+<h2>
+<b>Bug ID</b>   : <%=@bug.id%><br>
+<b>Bug Title</b> : <%=@bug.descriptive_title%><br>
+<b>Bug Description</b>   : <%=@bug.description%><br>
+<b>Bug Type</b>   : <%=@bug.bug_type%><br>
+<b>Bug Status</b>   : <%=@bug.status%><br></h2>
+  <%if current_user.user_type == 'qa'%>
+  <%= button_to "Delete", bug_path( @bug), :method => :delete %>
+  <%end%>
+  <%if current_user.user_type == 'developer'%>
  <%= button_to "assign", assign_bug_path(:id=> @bug.id), :method => :put %> <br>
-  <%= button_to "Change status", change_status_bug_path(:id=> @bug.id), :method => :put %>
+<%if current_user.id == @bug.assign_to%>
+  <%= button_to "Change status to resolved", change_status_bug_path(:id=> @bug.id), :method => :put %>
+  <%end%>
+  <%end%>
 

@@ -17,17 +17,23 @@
 <h2>User assigned</h2>
 <% if @project_username.present?%>
 <%@project_username.each do |p|%>
-   <b>username:    </b><%= p.username %>
-   <b>Role:</b>    <%= p.user_type %><br>
+   <b>User Id:    </b><%= p.id %>&nbsp;&nbsp;
+   <b>username:    </b><%= p.username %>&nbsp;&nbsp;
+   <b>Role:</b>    <%= p.user_type %>&nbsp;&nbsp;
+   <%if current_user.id == @project.user_id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <%= link_to "Remove User", removeuser_project_path(:project_id => @project.id,:user_id => p.id) %>
+   <%end%>
     <%end%>
 <%else%>
-    <p>No users</p>
+    <p>No users assigned to project</p>
 <%end%>
 <div>
 <%if current_user.id == @project.user_id%>
-<h4><%= link_to "Assign User", new_project_user_path(:project_id => @project.id), :class =>"btn btn-outline-primary" %></h4>
+<h4><%= link_to "Assign User", new_project_user_path(:project_id => @project.id)%></h4>
+
 <%end%>
 </div>
+<%if current_user.user_type == 'qa' ||current_user.user_type == 'developer'%>
 <h2>Related Bugs</h2>
 <% if @bugs.present?%>
 <% @bugs.each do |bug|%>
@@ -39,4 +45,7 @@
 <%else%>
     <p>NO Bugs</p>
 <%end%>
+<%if current_user.user_type == 'qa'%>
 <h4><%= link_to "Report Bug", new_bug_path(:project_id => @project.id) , :class =>"btn btn-outline-primary" %></h4>
+<%end%>
+<%end%>
